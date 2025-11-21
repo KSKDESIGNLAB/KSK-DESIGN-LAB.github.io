@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>KSKWERK – Automobilkunst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="KSKWERK – Automobilkunst. BMWの黄金期デザインとエンジン美観を現代に再構築する、日本発のレストモッド・アトリエ。" />
+  <style>
+    :root {
+      --orange: #d66b1f;  /* インカオレンジ寄りのベースカラー（後で調整可） */
+      --brown:  #4b3426;  /* HERMES系ブラウン */
+      --bg:     #0d0d0d;
+      --text:   #f5f2ee;
+      --muted:  #b7aea4;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: #050505;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-block {
+      display: inline-flex;
+      flex-direction: column;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown);
+    }
+
+    .logo-main {
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 4px 10px 2px;
+      background: var(--orange);
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 2px 10px 4px;
+      background: #1b1b1b;
+      color: var(--muted);
+    }
+
+    .nav-right {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.21em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #333 0, #050505 60%);
+      color: var(--text);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("images/hero-e30-e9.jpg"); /* あとで差し替え */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      filter: grayscale(40%);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: var(--max-width);
+      padding: 60px 20px 80px;
+      text-align: left;
+    }
+
+    .hero-tagline {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+
+    .hero-title span.accent {
+      color: var(--orange);
+    }
+
+    .hero-text {
+      max-width: 540px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+      cursor: pointer;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 20px 70px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .story-text p + p {
+      margin-top: 12px;
+    }
+
+    ul.list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    ul.list li {
+      margin-bottom: 8px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    ul.list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+    }
+
+    /* Lineup */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(145deg, #191919, #101010);
+      padding: 18px 18px 20px;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 18px 20px 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 800px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .nav-right {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="logo-block">
+        <div class="logo-main">KSKWERK</div>
+        <div class="logo-sub">AUTOMOBILKUNST</div>
+      </div>
+      <div class="nav-right">BMW-BASED RESTOMOD ATELIER</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tagline">FROM JAPAN · QUAD EYES · STRAIGHT SIX</div>
+      <h1 class="hero-title">
+        <span class="accent">KSKWERK</span> は、<br />
+        エンジンを中心に再構築する<br />
+        BMWレストモッド・アトリエです。
+      </h1>
+      <p class="hero-text">
+        ボンネットを開けても閉めても、美しく。<br />
+        黄金期BMWの丸目4灯と直列6気筒、その機械美と質感を、
+        現代の精度と職人技で再構築します。
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#lineup">LINEUP</a>
+        <a class="btn" href="#story">STORY</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- STORY -->
+    <section id="story">
+      <div class="section-label">ABOUT</div>
+      <h2 class="section-title">なぜ、KSKWERK は生まれたのか。</h2>
+      <div class="two-col">
+        <div class="story-text">
+          <p>
+            子どもの頃、父が乗っていた E30 320i のエンジン音で、
+            家の前にクルマが戻ってきたことがすぐに分かりました。
+            思春期の私はその音を素直に好きと言えず、その価値にも気づいていませんでした。
+          </p>
+          <p>
+            24歳のとき、偶然見つけたインカオレンジにホワイトレザーの
+            E30カブリオレを手に入れます。ドアを開けた瞬間の匂い、
+            走り出したときのエンジン音――あの頃の記憶が一気に蘇り、
+            そこから私はE30に狂ったようにのめり込みました。
+          </p>
+          <p>
+            フジツボのエキマニ、Getragドッグレッグ、E36 M3のナックル。
+            理想の一台のためにパーツを集め続けながらも、
+            結局それらを組み上げる前にクルマを手放してしまいました。
+            「もうクルマはいいかな」と思った時期もあります。
+          </p>
+          <p>
+            それでも消えなかったのは、
+            <strong>機械として美しいエンジンと、上質な内装を持つE30を作りたかった</strong>
+            という想いでした。アルピナ、M88、ITBへの憧れ――
+            KSKWERK は、そのとき果たせなかった構想を、
+            いま本当に具現化するためのアトリエです。
+          </p>
+        </div>
+        <div>
+          <p class="section-lead">
+            KSKWERK のテーマは、<br />
+            <strong>「エンジン美観 × 高級感 × アナログFR」</strong>。<br />
+            速さのためではなく、幸福のためのレストモッドです。
+          </p>
+          <ul class="list">
+            <li>外観は極力オリジナルのまま、ノーマルの美しさを尊重する。</li>
+            <li>エンジンルームは、配線・配管を含めて“見て楽しむ芸術作品”とする。</li>
+            <li>内装はハイブランドのレザーアイテムのような質感で統一する。</li>
+            <li>軽量・FR・マニュアルを基本とし、官能フィーリングを最優先する。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy">
+      <div class="section-label">PHILOSOPHY</div>
+      <h2 class="section-title">エンジンは隠さない。魅せるために再構築する。</h2>
+      <p class="section-lead">
+        現代のクルマは、プラスチックカバーの下にエンジンが隠され、
+        内装は巨大なディスプレイとイルミネーションで埋め尽くされています。
+        KSKWERK はその流れと真逆を行きます。
+      </p>
+      <ul class="list">
+        <li>カムカバー、ITB、等長エキマニをデザイン要素として徹底的に魅せる。</li>
+        <li>補機類・配線・ホースは、機能と美観の両面からレイアウトを再設計する。</li>
+        <li>メーターはアナログを基本にし、光り方ひとつまでトーンを揃える。</li>
+        <li>電子制御は必要最小限。ABSやトラクションも、“アナログ感を損なわない範囲”で。</li>
+      </ul>
+    </section>
+
+    <!-- LINEUP -->
+    <section id="lineup">
+      <div class="section-label">LINEUP</div>
+      <h2 class="section-title">QUADEYES SERIES – エンジン主体のラインナップ</h2>
+      <p class="section-lead">
+        ベースは、BMWの丸目4灯（Quad Eyes）時代を中心としたモデルたち。
+        それぞれのエンジン形式ごとに、性格と役割を明確に分けています。
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-label">LIGHTWEIGHT · ANALOG</div>
+          <h3 class="card-title">QuadEyes M20</h3>
+          <div class="card-sub">E30 / 2002 ベース · NA Straight-6 with ITB</div>
+          <p>
+            軽さと吹け上がりを最優先にした、ライトウェイトFR。
+            アルピナB6 2.7を超えることを前提にしながらも、
+            サウンドはあくまでクラシックM20のキャラクターを崩さず、
+            現代的な精度と仕立てで再構築します。
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">GRAND TOURER · STRAIGHT-SIX</div>
+          <h3 class="card-title">QuadEyes M30</h3>
+          <div class="card-sub">E24 / E9 / Special E30 ベース</div>
+          <p>
+            ビッグシックス M30 の重厚さと官能性を、エンジン美観の頂点として磨き上げたGT。
+            美しく並ぶITB、丁寧にレイアウトされた配管、
+            クラシックなBMWクーペのラインと組み合わせ、
+            “眺めているだけで一日終わる”エンジンルームを目指します。
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-label">V12 · DEEP RESONANCE</div>
+          <h3 class="card-title">QuadEyes S70</h3>
+          <div class="card-sub">E31 ベース · V12 Special</div>
+          <p>
+            地鳴りのようなアイドリングと、重低音主体のV12チューニング。
+            ITB化・ドライサンプ・冷却系の最適化により、
+            フェラーリやランボルギーニとは別方向の“BMWらしいV12芸術”を追求します。
+          </p>
+        </article>
+      </div>
+
+      <p class="small-note">
+        ※ 現時点では構想段階のコンセプトラインナップです。
+        実車の製作・受注開始については、本サイトにて順次アナウンス予定です。
+      </p>
+    </section>
+
+    <!-- CRAFT -->
+    <section id="craft">
+      <div class="section-label">CRAFT & DETAILS</div>
+      <h2 class="section-title">外観はノーマル。中身は工芸品。</h2>
+      <p class="section-lead">
+        KSKWERK のクルマには、派手なエアロも、過剰なロゴも必要ありません。
+        BMWのラウンドエルムだけを残し、その内側にだけ KSKWERK のサインを刻みます。
+      </p>
+      <ul class="list">
+        <li>エクステリアは、車高とホイールを除き基本ノーマルシルエット。</li>
+        <li>内装はホワイト〜ライトトーンのレザーにブラウンの差し色、オレンジステッチ。</li>
+        <li>樹脂パーツは極力排除し、金属・レザー・ウッドで構成する。</li>
+        <li>KSKWERKロゴは室内の小さなプレートとエンジンルームのプレートのみ。</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT / NOTE -->
+    <section id="contact">
+      <div class="section-label">FUTURE</div>
+      <h2 class="section-title">この構想に、共鳴してくれる人へ。</h2>
+      <p class="section-lead">
+        KSKWERK は、まだ工房すら持たない、小さな個人のアトリエ構想です。
+        しかし、エンジン美観とBMWの黄金期デザインに対する情熱だけは、
+        どのブランドにも負けない自信があります。
+      </p>
+      <p class="section-lead">
+        まずは構想を形にするための一歩として、このサイトを公開しました。
+        いつか実車を形にし、その過程と結果をここで報告できればと思っています。
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © KSKWERK – Automobilkunst. All concepts and designs are in progress.
+  </footer>
+</body>
+</html>

@@ -3,56 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSKWERK | BMW</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <title>KSKWERK | Automobilkunst</title>
+    <style>
+        /* Base Reset & Typography */
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #f0f0f0;
+            --text-sub: #888;
+            --accent: #b0b0b0; /* Titanium like */
+            --font-serif: "Garamond", "Times New Roman", serif;
+            --font-sans: "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        a:hover { opacity: 0.7; }
+
+        /* Layout Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0;
+            border-bottom: 1px solid #222;
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 0.2em;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        nav li { font-size: 12px; }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            color: var(--text-sub);
+            font-size: 1.2rem;
+        }
+
+        /* Common Technical Philosophy */
+        .tech-specs {
+            background-color: #111;
+            border-left: 1px solid #333;
+        }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .tech-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .tech-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+        }
+        .tech-label { color: var(--text-sub); font-size: 0.9rem; }
+        .tech-val { text-align: right; font-weight: bold; }
+
+        /* Engine Section */
+        .engines {
+            text-align: center;
+        }
+        .engine-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .engine-card {
+            border: 1px solid #222;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        .engine-card:hover { border-color: var(--text-main); }
+        .engine-name { font-size: 1.5rem; margin-bottom: 10px; display:block; }
+        .engine-base { color: var(--text-sub); font-size: 0.9rem; }
+
+        /* Lineup Section */
+        .lineup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        .car-card {
+            background-color: #0f0f0f;
+            border: 1px solid #222;
+        }
+        .car-image {
+            width: 100%;
+            height: 250px;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 0.8rem;
+        }
+        .car-info {
+            padding: 30px;
+        }
+        .car-model {
+            font-size: 2rem;
+            font-family: var(--font-serif);
+            margin-bottom: 10px;
+        }
+        .car-concept {
+            font-style: italic;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            display: block;
+            border-left: 2px solid var(--text-main);
+            padding-left: 15px;
+        }
+        .car-specs {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.8;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #222;
+            padding: 8px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid #222;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+        }
+
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html"><img src="image/main-logo.png" alt="KSK DESIGN LAB" class="nav-logo-img"></a>
-        <div class="nav-links">
-            <a href="bmw.html" style="color:var(--gold);">BMW</a>
-            <a href="alfa.html">ALFA ROMEO</a>
-            <a href="jaguar.html">JAGUAR</a>
-            <a href="getrag.html">GETRAG</a>
-            <button id="lang-toggle" class="lang-btn">EN</button>
-        </div>
-    </nav>
 
-    <header class="hero-logo-section">
-        <img src="image/kskwerk-logo.png" alt="KSKWERK" class="hero-logo-img" style="max-width: 500px;">
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">KSKWERK</div>
+            <nav>
+                <ul>
+                    <li><a href="#philosophy">PHILOSOPHY</a></li>
+                    <li><a href="#engines">ENGINES</a></li>
+                    <li><a href="#lineup">LINEUP</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <h2 style="color:var(--gold);">LINEUP</h2>
-        <ul class="lineup-list">
-            <li>
-                <strong>BMW E31 "M70" CSL (The Emperor)</strong>
-                <small lang="ja">5.0L V12 独立スロットル / Getrag 265/5 (ドッグレッグMT) / カーボンボディ</small>
-                <small lang="en">5.0L V12 ITB / Getrag 265/5 (Dog-leg MT) / Carbon Body</small>
-            </li>
-            <li>
-                <strong>BMW 2002 "tii-R" (The 02)</strong>
-                <small lang="ja">S14エンジン換装 / 軽量化 / カフェレーサースタイル</small>
-                <small lang="en">S14 Engine Swap / Lightweight / Cafe Racer Style</small>
-            </li>
-            <li>
-                <strong>BMW E9 (The Coupe)</strong>
-                <small lang="ja">M88/3エンジン / カーボンインナーパネルによる防錆・剛性強化</small>
-                <small lang="en">M88/3 Engine / Rust-proof Carbon Inner Panels</small>
-            </li>
-            <li>
-                <strong>BMW E24 (The GT)</strong>
-                <small lang="ja">S38B38エンジン / 高速巡航仕様</small>
-                <small lang="en">S38B38 Engine / High Speed Cruiser Spec</small>
-            </li>
-            <li>
-                <strong>BMW E30 (The Open)</strong>
-                <small lang="ja">M20 ITB (独立スロットル) / ナローボディ・カブリオレ</small>
-                <small lang="en">M20 ITB / Narrow Body Cabriolet</small>
-            </li>
-        </ul>
-    </div>
-    <script src="script.js"></script>
+    <section class="hero">
+        <div class="container">
+            <h1>AUTOMOBILKUNST</h1>
+            <p>NOT RESTORATION, BUT RECONSTRUCTION.</p>
+        </div>
+    </section>
+
+    <section id="philosophy" class="section-padding tech-specs">
+        <div class="container">
+            <div class="tech-grid">
+                <div>
+                    <h2>TECHNICAL<br>STANDARDS</h2>
+                    <p style="margin-top:20px; color:var(--text-sub);">
+                        KSKWERKのすべての車両に適用される、妥協なきエンジニアリング基準。<br>
+                        最新のアウディ並みのボディ精度と、ロールスロイス並みの仕上げ品質を追求。
+                    </p>
+                </div>
+                <div class="tech-list">
+                    <ul>
+                        <li><span class="tech-label">Position</span><span class="tech-val">Left Hand Drive Only</span></li>
+                        <li><span class="tech-label">Transmission</span><span class="tech-val">GETRAG 265/5 Dogleg</span></li>
+                        <li><span class="tech-label">Structure</span><span class="tech-val">Extreme Lightweight & Rigidity</span></li>
+                        <li><span class="tech-label">Engine Layout</span><span class="tech-val">Dry Sump / Low & Rear Mount</span></li>
+                        <li><span class="tech-label">Intake</span><span class="tech-val">Individual Throttle Bodies (ITB)</span></li>
+                        <li><span class="tech-label">Exhaust</span><span class="tech-val">Inconel Header / Ti Downpipe / SUS Mirror Tail</span></li>
+                        <li><span class="tech-label">Materials</span><span class="tech-val">No Plastic / No Chrome Plating</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engines" class="section-padding">
+        <div class="container">
+            <h2 style="text-align: center;">THE HEART</h2>
+            <div class="engine-grid">
+                <div class="engine-card">
+                    <span class="engine-name">QuadEyes M20</span>
+                    <span class="engine-base">Based on BMW M20 Inline-6</span>
+                </div>
+                <div class="engine-card">
+                    <span class="engine-name">QuadEyes M30</span>
+                    <span class="engine-base">Based on BMW M30 Inline-6</span>
+                </div>
+                <div class="engine-card">
+                    <span class="engine-name">QuadEyes M70</span>
+                    <span class="engine-base">Based on BMW M70 V12</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lineup" class="section-padding">
+        <div class="container">
+            <h2 style="margin-bottom: 60px;">THE COLLECTION</h2>
+            
+            <div class="lineup-grid">
+                
+                <div class="car-card">
+                    <div class="car-image">IMAGE: 2002 ALPINE WHITE</div>
+                    <div class="car-info">
+                        <div class="car-model">2002</div>
+                        <span class="car-concept">Concept: Lotus Killer</span>
+                        <div class="car-specs">
+                            <div class="spec-row"><span>Color</span> <span>Alpine White</span></div>
+                            <div class="spec-row"><span>Engine</span> <span>QuadEyes M20</span></div>
+                            <div class="spec-row"><span>Weight</span> <span>900kg class</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <div class="car-image">IMAGE: E9 DARK GREEN</div>
+                    <div class="car-info">
+                        <div class="car-model">E9</div>
+                        <span class="car-concept">Concept: BMW 911 GT3 Touring</span>
+                        <div class="car-specs">
+                            <div class="spec-row"><span>Color</span> <span>Dark Green</span></div>
+                            <div class="spec-row"><span>Engine</span> <span>QuadEyes M30</span></div>
+                            <div class="spec-row"><span>Weight</span> <span>1100kg class</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <div class="car-image">IMAGE: E24 TITANIUM SILVER</div>
+                    <div class="car-info">
+                        <div class="car-model">E24</div>
+                        <span class="car-concept">Concept: Beyond Alpina B10</span>
+                        <div class="car-specs">
+                            <div class="spec-row"><span>Color</span> <span>Titanium Silver</span></div>
+                            <div class="spec-row"><span>Engine</span> <span>QuadEyes M30</span></div>
+                            <div class="spec-row"><span>Weight</span> <span>1300kg class</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <div class="car-image">IMAGE: E30 INCA ORANGE</div>
+                    <div class="car-info">
+                        <div class="car-model">E30 Cabriolet</div>
+                        <span class="car-concept">Concept: RR Dawn driving like a Roadster</span>
+                        <div class="car-specs">
+                            <div class="spec-row"><span>Color</span> <span>Inca Orange</span></div>
+                            <div class="spec-row"><span>Engine</span> <span>QuadEyes M20 / M30</span></div>
+                            <div class="spec-row"><span>Weight</span> <span>1100kg (Target)</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="car-card">
+                    <div class="car-image">IMAGE: E31 BLACK</div>
+                    <div class="car-info">
+                        <div class="car-model">E31</div>
+                        <span class="car-concept">Concept: The Epicenter (Deep Bass)</span>
+                        <div class="car-specs">
+                            <div class="spec-row"><span>Color</span> <span>Black</span></div>
+                            <div class="spec-row"><span>Engine</span> <span>QuadEyes M70</span></div>
+                            <div class="spec-row"><span>Weight</span> <span>1600kg</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 KSKWERK DESIGN LAB. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
